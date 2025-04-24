@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: alert-test
+  labels:
+    app: alert-test
+spec:
+  selector:
+    app: alert-test
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080

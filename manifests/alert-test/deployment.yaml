@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alert-test
+  labels:
+    app: alert-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alert-test
+  template:
+    metadata:
+      labels:
+        app: alert-test
+    spec:
+      containers:
+        - name: stress
+          image: quay.io/justcontai/ns-stress:latest
+          args: ["--cpu", "1", "--timeout", "3600s"]
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
